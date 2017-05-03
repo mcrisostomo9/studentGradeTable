@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import AddForm from './components/AddForm';
-import StudentList from './components/StudentList';
+import StudentListContainer from './components/StudentListContainer';
 
 
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
       <div className="container">
         <Header/>
         <AddForm/>
-        <StudentList/>
+        <StudentListContainer/>
       </div>
     );
   }
