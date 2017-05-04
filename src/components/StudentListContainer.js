@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getStudent } from '../actions/actionCreators'
+import { getStudent } from '../actions/actionCreators';
+import StudentList from './StudentList';
 
 class StudentListContainer extends Component {
   componentDidMount() {
@@ -9,9 +10,14 @@ class StudentListContainer extends Component {
   renderStudents() {
     const {students} = this.props;
     if(!students){
-      return <div>Loading...</div>
+      return <tr><td>Loading...</td></tr>
     }
     console.log('my students', students);
+    Object.keys(students).map((key) => {
+      console.log('the student', key);
+      
+      // return <StudentList key={key} name={name} course={course} grade={grade}/>
+    })
   }
   render() {
     return (
@@ -26,8 +32,11 @@ class StudentListContainer extends Component {
               <th>Operations</th>
             </tr>
           </thead>
+
+          <tbody>
+            {this.renderStudents()}
+          </tbody>
         </table>
-        {this.renderStudents()}
       </div>
     )
   }

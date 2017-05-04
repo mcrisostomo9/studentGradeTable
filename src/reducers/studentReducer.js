@@ -7,11 +7,9 @@ export default function studentData(state={}, action){
     //     inProgress: true
     //   })
     case ActionTypes.GET_STUDENT_FULFILLED:
-      // const {students} = action.students
-      console.log('reducer', action.student);
       return{
         ...state,
-        students: action.student
+        students: action.student.students
       }
     case ActionTypes.ADD_STUDENT:
       return{
