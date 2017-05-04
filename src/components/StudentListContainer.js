@@ -1,6 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getStudent } from '../actions/actionCreators'
 
-export default class StudentListContainer extends Component {
+class StudentListContainer extends Component {
+  componentDidMount() {
+  this.props.onGetStudent();
+}
+  // renderStudents(){
+  //
+  // }
   render(){
     return(
       <div className="col-sm-9 col-sm-pull-3 col-md-9 col-md-pull-3 col-lg-9 col-lg-pull-3">
@@ -15,7 +23,23 @@ export default class StudentListContainer extends Component {
             </tr>
           </thead>
         </table>
+        {/* {this.renderStudents()} */}
       </div>
     )
   }
 }
+
+
+const mapStateToProps = (state) => {
+  return{
+
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    onGetStudent: () => dispatch(getStudent())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentListContainer)
