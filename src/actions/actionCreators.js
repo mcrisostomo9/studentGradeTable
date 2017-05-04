@@ -3,7 +3,7 @@ import database from './database';
 
 export function getStudent(){
   return dispatch => {
-    dispatch(getStudentRequest());
+    // dispatch(getStudentRequest());
     return database.ref('/').once('value', snap => {
       const student = snap.val();
       dispatch(getStudentFulfilled(student))
@@ -14,11 +14,11 @@ export function getStudent(){
   }
 }
 
-function getStudentRequest(){
-  return {
-    type: ActionTypes.GET_STUDENT_REQUEST
-  }
-}
+// function getStudentRequest(){
+//   return {
+//     type: ActionTypes.GET_STUDENT_REQUEST
+//   }
+// }
 
 function getStudentFulfilled(student){
   return{
