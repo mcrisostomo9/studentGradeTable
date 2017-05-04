@@ -1,16 +1,20 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getStudent } from '../actions/actionCreators'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {getStudent} from '../actions/actionCreators'
 
 class StudentListContainer extends Component {
   componentDidMount() {
-  this.props.onGetStudent();
-}
-  // renderStudents(){
-  //
-  // }
-  render(){
-    return(
+    this.props.onGetStudent();
+  }
+  renderStudents() {
+    const {students} = this.props;
+    if(!students){
+      return <div>Loading...</div>
+    }
+    console.log('my students', students);
+  }
+  render() {
+    return (
       <div className="col-sm-9 col-sm-pull-3 col-md-9 col-md-pull-3 col-lg-9 col-lg-pull-3">
         <table className="table">
           <thead>
@@ -23,21 +27,20 @@ class StudentListContainer extends Component {
             </tr>
           </thead>
         </table>
-        {/* {this.renderStudents()} */}
+        {this.renderStudents()}
       </div>
     )
   }
 }
 
-
 const mapStateToProps = (state) => {
-  return{
-
+  return {
+    students: state.studentData.students
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return{
+  return {
     onGetStudent: () => dispatch(getStudent())
   }
 }

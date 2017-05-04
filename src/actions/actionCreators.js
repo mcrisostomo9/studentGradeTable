@@ -6,7 +6,6 @@ export function getStudent(){
     dispatch(getStudentRequest());
     return database.ref('/').once('value', snap => {
       const student = snap.val();
-      console.log('student data', student);
       dispatch(getStudentFulfilled(student))
     })
     .catch((error) => {
@@ -24,6 +23,6 @@ function getStudentRequest(){
 function getStudentFulfilled(student){
   return{
     type: ActionTypes.GET_STUDENT_FULFILLED,
-    student
+    student: student
   }
 }
