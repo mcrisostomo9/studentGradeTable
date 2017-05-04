@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class AddForm extends Component {
+class AddForm extends Component {
   render(){
     return(
       <div className="form-group col-sm-3 col-sm-push-9 col-md-3 col-md-push-9  col-lg-3 col-lg-push-9">
@@ -29,3 +30,17 @@ export default class AddForm extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return{
+
+  }
+}
+
+const mapDispatchToProps = (state) => {
+  return{
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddForm)
