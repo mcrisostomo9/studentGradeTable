@@ -13,6 +13,14 @@ export default function studentData(state={}, action){
         ...state,
         students: action.student
       }
+    case ActionTypes.ADD_STUDENT:
+      return{
+        ...state,
+        name: action.name,
+        course: action.course,
+        grade: action.grade,
+
+      }
     default:
       return state
   }

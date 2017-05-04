@@ -26,3 +26,29 @@ function getStudentFulfilled(student){
     student: student
   }
 }
+
+export function addStudent(name, course, grade){
+  return dispatch => {
+    const studentRef = database.ref('/students');
+    studentRef.push({
+      name,
+      course,
+      grade
+    })
+    .then(() => {
+      dispatch(addStudentFulfilled({name, course, grade}))
+    })
+    .catch((error) => {
+      console.log('error in adding student', error);
+    })
+  }
+}
+
+function addStudentFulfilled(name, course, grade){
+  return {
+    type: ActionTypes.ADD_STUDENT,
+    name: name,
+    course: course,
+    grade: grade
+  }
+}

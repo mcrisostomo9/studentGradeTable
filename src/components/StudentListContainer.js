@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {getStudent} from '../actions/actionCreators'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getStudent } from '../actions/actionCreators'
 
 class StudentListContainer extends Component {
   componentDidMount() {
