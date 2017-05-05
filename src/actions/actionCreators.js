@@ -29,7 +29,7 @@ function getStudentFulfilled(student){
 
 export function addStudent(name, course, grade){
   return dispatch => {
-    const studentRef = database.ref('/students');
+    const studentRef = database.ref(`/students`);
     studentRef.push({
       name,
       course,

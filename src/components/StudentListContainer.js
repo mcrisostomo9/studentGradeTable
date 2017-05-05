@@ -7,18 +7,29 @@ class StudentListContainer extends Component {
   componentDidMount() {
     this.props.onGetStudent();
   }
+  // componentWillReceiveProps(nextProps){
+  //   // let { students } = this.props;
+  //   // if(students === nextProps.students){
+  //   //   return false;
+  //   // }
+  //   // this.props.onGetStudent()
+  //   // this.props.onGetStudent()
+  //   console.log('the next props', nextProps.students);
+  // }
   renderStudents() {
     const {students} = this.props;
     if(!students){
       return <tr><td>Loading...</td></tr>
     }
-    console.log('my students', students);
-    Object.keys(students).map((key) => {
-      console.log('the student', key);
-      
-      // return <StudentList key={key} name={name} course={course} grade={grade}/>
-    })
-  }
+    console.log('the students', students);
+    let key = Object.keys(students);
+    let id;
+    for(id in students){
+      console.log('the id in students', students[id].grade);
+      // return <StudentList key={key} name={students[id].name} course={students[id].course} grade={students[id].grade}/>
+    }
+}
+
   render() {
     return (
       <div className="col-sm-9 col-sm-pull-3 col-md-9 col-md-pull-3 col-lg-9 col-lg-pull-3">
