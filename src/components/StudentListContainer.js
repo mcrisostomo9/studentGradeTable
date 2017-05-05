@@ -1,17 +1,34 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {getStudent} from '../actions/actionCreators'
+import database from '../actions/database';
+import StudentList from './StudentList';
 
 class StudentListContainer extends Component {
+  constructor(){
+    super();
+    this.state = {
+      students: {}
+    }
+  }
+
   componentDidMount() {
-    this.props.onGetStudent();
+    const rootRef = database.ref();
+    const studentsRef = rootRef.child('students');
+    studentsRef.on('value', snap => {
+      this.setState({
+        students: snap.val()
+      })
+    });
   }
   renderStudents() {
-    const {students} = this.props;
+    const {students} = this.state;
     if(!students){
       return <div>Loading...</div>
     }
-    console.log('my students', students);
+    return Object.keys(students).map((key, index) => {
+      const id = students[key];
+      console.log(id);
+      return <StudentList key={key} index={index} name={id.name} course={id.course} grade={id.grade}/>
+    })
   }
   render() {
     return (
@@ -26,23 +43,14 @@ class StudentListContainer extends Component {
               <th>Operations</th>
             </tr>
           </thead>
+          <tbody>
+            {this.renderStudents()}
+          </tbody>
         </table>
-        {this.renderStudents()}
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    students: state.studentData.students
-  }
-}
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onGetStudent: () => dispatch(getStudent())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(StudentListContainer)
+export default StudentListContainer

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 
 class AddForm extends Component {
   render(){
@@ -31,16 +31,5 @@ class AddForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return{
 
-  }
-}
-
-const mapDispatchToProps = (state) => {
-  return{
-
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddForm)
+export default AddForm
