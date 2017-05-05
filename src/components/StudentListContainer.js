@@ -26,8 +26,7 @@ class StudentListContainer extends Component {
     }
     return Object.keys(students).map((key, index) => {
       const id = students[key];
-      console.log(id);
-      return <StudentList key={key} index={index} name={id.name} course={id.course} grade={id.grade}/>
+      return <StudentList key={key} index={index} name={id.name} course={id.course} grade={id.grade} />
     })
   }
   render() {
