@@ -16,8 +16,9 @@ export default class Header extends Component {
         const students = snap.val();
         const gradeArray = []
         Object.keys(students).map(key => {
-          const grade = parseInt(students[key].grade);
-          gradeArray.push(grade)
+          const grade = parseInt(students[key].grade, 10);
+          gradeArray.push(grade);
+          return gradeArray
         });
         const average = gradeArray.reduce((total, amount, index, array) => {
           total += amount;

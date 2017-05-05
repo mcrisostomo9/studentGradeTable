@@ -19,6 +19,10 @@ class StudentListContainer extends Component {
       })
     });
   }
+
+  deleteStudent(){
+    console.log('deleted');
+  }
   renderStudents() {
     const {students} = this.state;
     if(!students){
@@ -26,7 +30,7 @@ class StudentListContainer extends Component {
     }
     return Object.keys(students).map((key, index) => {
       const id = students[key];
-      return <StudentList key={key} index={index} name={id.name} course={id.course} grade={id.grade} />
+      return <StudentList key={key} index={index} name={id.name} course={id.course} grade={id.grade} deleteClickHandler={() => this.deleteStudent()} />
     })
   }
   render() {
