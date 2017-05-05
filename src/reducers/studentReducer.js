@@ -7,6 +7,9 @@ export default function studentData(state={}, action){
     //     inProgress: true
     //   })
     case ActionTypes.GET_STUDENT_FULFILLED:
+      // const newState = Object.assign({}, state, {
+      //   students: action.student.students
+      // });
       return{
         ...state,
         students: action.student.students
