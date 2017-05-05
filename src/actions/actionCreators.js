@@ -4,8 +4,9 @@ import database from './database';
 export function getStudent(){
   return dispatch => {
     // dispatch(getStudentRequest());
-    return database.ref('/').once('value', snap => {
+    return database.ref('/students').once('value', snap => {
       const student = snap.val();
+      console.log('action students', student);
       dispatch(getStudentFulfilled(student))
     })
     .catch((error) => {

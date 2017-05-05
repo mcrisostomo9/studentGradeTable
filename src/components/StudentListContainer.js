@@ -5,7 +5,7 @@ import StudentList from './StudentList';
 
 class StudentListContainer extends Component {
   componentDidMount() {
-    this.props.onGetStudent();
+    this.props.handleGetStudent();
   }
   // componentWillReceiveProps(nextProps){
   //   // let { students } = this.props;
@@ -22,13 +22,13 @@ class StudentListContainer extends Component {
       return <tr><td>Loading...</td></tr>
     }
     console.log('the students', students);
-    let key = Object.keys(students);
-    let id;
-    for(id in students){
-      console.log('the id in students', students[id].grade);
+    // let students = Object.keys(students);
+    // let id;
+    // for(id in students){
+    //   console.log('the id in students', students[id].grade);
       // return <StudentList key={key} name={students[id].name} course={students[id].course} grade={students[id].grade}/>
     }
-}
+// }
 
   render() {
     return (
@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onGetStudent: () => dispatch(getStudent())
+    handleGetStudent: () => dispatch(getStudent())
   }
 }
 
