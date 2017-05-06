@@ -66,8 +66,11 @@ class AddForm extends Component {
          <input type="number" value={this.state.grade} onChange={e => this.setState({ grade: e.target.value})} className="form-control" placeholder="Student Grade"/>
        </div>
 
-       <button className="btn btn-success" onClick={() => this.handleAddButton()}>Add</button>
-       <button className="btn" onClick={() => this.handleCancelButton()}>Cancel</button>
+        <div className="btn-group">
+          <button className="btn btn-success" onClick={() => this.handleAddButton()}>Add</button>
+          <button className="btn" onClick={() => this.handleCancelButton()}>Cancel</button>
+        </div>
+
      </div>
    )
  }

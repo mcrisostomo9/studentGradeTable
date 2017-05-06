@@ -1,8 +1,8 @@
-import React,{ Component } from 'react';
+import React, {Component} from 'react';
 import database from '../actions/database';
 
-export default class StudentList extends Component{
-  constructor(props){
+export default class StudentList extends Component {
+  constructor(props) {
     super(props);
     this.state = {
       edit: false,
@@ -15,68 +15,75 @@ export default class StudentList extends Component{
     }
   }
 
-  editStudent(){
-    this.setState({
-      edit: true
-    })
+  editStudent() {
+    this.setState({edit: true})
   }
 
-  cancelEdit(){
-    this.setState({
-      edit: false
-    })
+  cancelEdit() {
+    this.setState({edit: false})
   }
 
-  saveStudent(){
-    const { name, course, grade } = this.state.studentInfo;
+  saveStudent() {
+    const {name, course, grade} = this.state.studentInfo;
     const studentsRef = database.ref().child('students');
-    studentsRef.child(this.props.id).update({
-      name,
-      course,
-      grade
-    });
-    this.setState({
-      edit: false
-    });
+    studentsRef.child(this.props.id).update({name, course, grade});
+    this.setState({edit: false});
   }
 
-  // handleChange(propertyName, e){
-  //   const { studentInfo } = this.state;
-  //   const newStudentInfo = {
-  //     ...studentInfo,
-  //     {propertyName}: e.target.value;
-  //   }
-  //   this.setState({
-  //     studentInfo: newStudentInfo
-  //   })
-  // }
+  changeName = (e) => {
+    const { studentInfo } = this.state;
+    const newStudentInfo = {
+      ...studentInfo,
+      name: e.target.value
+    };
+    this.setState({studentInfo: newStudentInfo});
+  }
 
-  render(){
-    const { name, course, grade } = this.state.studentInfo;
-    if(!this.state.edit){
-        return(
-          <tr>
-            <td>{name}</td>
-            <td>{course}</td>
-            <td>{grade}</td>
-            <td>
-                <button onClick={() => this.editStudent()} className="btn btn-primary btn-sm">Edit</button>
-                <button onClick={() => this.props.deleteStudentHandler()} className="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-        )
-    }
-      return(
+  changeCourse = (e) => {
+    console.log('default', e);
+    const { studentInfo } = this.state;
+    const newStudentInfo = {
+      ...studentInfo,
+      course: e.target.value
+    };
+    this.setState({studentInfo: newStudentInfo});
+  }
+
+  changeGrade = (e) => {
+    const { studentInfo } = this.state;
+    const newStudentInfo = {
+      ...studentInfo,
+      grade: e.target.value
+    };
+    this.setState({studentInfo: newStudentInfo});
+  }
+
+  render() {
+    const {name, course, grade} = this.state.studentInfo;
+    if (!this.state.edit) {
+      return (
         <tr>
-          <td><input className="form-control" type="text" value={name} onChange={this.handleChange('name')}/></td>
-          <td><input className="form-control" type="text" value={course} onChange={this.handleChange('course')}/></td>
-          <td><input className="form-control" type="number" value={grade} onChange={this.handleChange('grade')}/></td>
-          <td>
-              <button onClick={() => this.cancelEdit()} className="btn btn-sm">Cancel</button>
-              <button onClick={() => this.saveStudent()} className="btn btn-success btn-sm">Save</button>
+          <td>{name}</td>
+          <td>{course}</td>
+          <td>{grade}</td>
+          <td className="btn-group" role="group">
+            <button type="button" onClick={() => this.editStudent()} className="btn btn-primary btn-sm">Edit</button>
+            <button type="button" onClick={() => this.props.deleteStudentHandler()} className="btn btn-danger btn-sm">Delete</button>
           </td>
         </tr>
       )
+    }
+    return (
+      <tr>
+        <td><input className="form-control" type="text" value={name} onChange={this.changeName}/></td>
+        <td><input className="form-control" type="text" value={course} onChange={this.changeCourse}/></td>
+        <td><input className="form-control" type="number" value={grade} onChange={this.changeGrade}/></td>
+        <td className="btn-group" role="group">
+          <button type="button" onClick={() => this.saveStudent()} className="btn btn-success btn-sm">Save</button>
+          <button type="button" onClick={() => this.cancelEdit()} className="btn btn-sm ">Cancel</button>
+        </td>
+      </tr>
+    )
   }
 
 }
