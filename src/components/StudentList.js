@@ -19,10 +19,6 @@ export default class StudentList extends Component {
     this.setState({edit: true})
   }
 
-  cancelEdit() {
-    this.setState({edit: false})
-  }
-
   saveStudent() {
     const {name, course, grade} = this.state.studentInfo;
     const studentsRef = database.ref().child('students');
@@ -36,6 +32,7 @@ export default class StudentList extends Component {
       ...studentInfo,
       name: e.target.value
     };
+
     this.setState({studentInfo: newStudentInfo});
   }
 
@@ -80,7 +77,7 @@ export default class StudentList extends Component {
         <td><input className="form-control" type="number" value={grade} onChange={this.changeGrade}/></td>
         <td className="btn-group" role="group">
           <button type="button" onClick={() => this.saveStudent()} className="btn btn-success btn-sm">Save</button>
-          <button type="button" onClick={() => this.cancelEdit()} className="btn btn-sm ">Cancel</button>
+          <button type="button" onClick={() => this.props.deleteStudentHandler()} className="btn btn-danger btn-sm">Delete</button>
         </td>
       </tr>
     )
