@@ -11,8 +11,7 @@ class StudentListContainer extends Component {
   }
 
   componentDidMount() {
-    const rootRef = database.ref();
-    const studentsRef = rootRef.child('students');
+    const studentsRef = database.ref().child('students');
     studentsRef.on('value', snap => {
       this.setState({
         students: snap.val()
@@ -20,17 +19,20 @@ class StudentListContainer extends Component {
     });
   }
 
-  deleteStudent(){
-    console.log('deleted');
+  deleteStudent(key){
+    console.log('clicked', key);
+    const studentsRef = database.ref().child('students');
+    studentsRef.child(key).remove();
   }
+
   renderStudents() {
     const {students} = this.state;
     if(!students){
-      return <div>Loading...</div>
+      return <div>No students</div>
     }
-    return Object.keys(students).map((key, index) => {
+    return Object.keys(students).map( key => {
       const id = students[key];
-      return <StudentList key={key} index={index} name={id.name} course={id.course} grade={id.grade} deleteClickHandler={() => this.deleteStudent()} />
+      return <StudentList key={key} name={id.name} course={id.course} grade={id.grade} deleteStudentHandler={() => this.deleteStudent(key)} />
     })
   }
   render() {
@@ -40,7 +42,7 @@ class StudentListContainer extends Component {
           <thead>
             <tr>
               <th>Student Name</th>
-              <th>Student ID</th>
+              {/* <th>Student ID</th> */}
               <th>Student Course</th>
               <th>Student Grade</th>
               <th>Operations</th>
