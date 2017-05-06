@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import database from '../actions/database';
 import StudentList from './StudentList';
 
-class StudentListContainer extends Component {
+export default class StudentListContainer extends Component {
   constructor(){
     super();
     this.state = {
@@ -20,7 +20,6 @@ class StudentListContainer extends Component {
   }
 
   deleteStudent(key){
-    console.log('clicked', key);
     const studentsRef = database.ref().child('students');
     studentsRef.child(key).remove();
   }
@@ -32,7 +31,7 @@ class StudentListContainer extends Component {
     }
     return Object.keys(students).map( key => {
       const id = students[key];
-      return <StudentList key={key} name={id.name} course={id.course} grade={id.grade} deleteStudentHandler={() => this.deleteStudent(key)} />
+      return <StudentList key={key} id={key} name={id.name} course={id.course} grade={id.grade} deleteStudentHandler={() => this.deleteStudent(key)}/>
     })
   }
   render() {
@@ -42,7 +41,6 @@ class StudentListContainer extends Component {
           <thead>
             <tr>
               <th>Student Name</th>
-              {/* <th>Student ID</th> */}
               <th>Student Course</th>
               <th>Student Grade</th>
               <th>Operations</th>
@@ -56,6 +54,3 @@ class StudentListContainer extends Component {
     )
   }
 }
-
-
-export default StudentListContainer
