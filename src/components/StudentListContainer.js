@@ -12,13 +12,22 @@ export default class StudentListContainer extends Component {
 
   componentDidMount() {
     const studentsRef = database.ref('students');
-    // TODO: attempt orderbychild
-    // const studentsRef = database.ref('students').orderByChild('name');
     studentsRef.on('value', snap => {
       this.setState({
         students: snap.val()
       })
-    });
+    })
+  }
+
+  // TODO: fix sort
+  sortName(){
+    const nameSortRef = database.ref('students').orderByChild('lowerName');
+    nameSortRef.on('child_added', snap => {
+      console.log(snap.val());
+      this.setState({
+        students: snap.val()
+      })
+    })
   }
 
   deleteStudent(key){
@@ -45,7 +54,7 @@ export default class StudentListContainer extends Component {
         <table className="table">
           <thead>
             <tr>
-              <th>Student Name</th>
+              <th><button onClick={() => this.sortName()} className="btn"><span className="glyphicon glyphicon-sort" ></span></button>Student Name</th>
               <th>Student Course</th>
               <th>Student Grade</th>
               <th>Operations</th>

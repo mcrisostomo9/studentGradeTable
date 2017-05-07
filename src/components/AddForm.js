@@ -13,14 +13,21 @@ class AddForm extends Component {
  }
 
  handleAddButton(){
-   let { name, course, grade } = this.state;
+   const { name, course, grade } = this.state;
+
+  //  since firebase is case sensitive when sorting, storing lower case values of the name and course
+   const lowerName = name.toLowerCase();
+   const lowerCourse = course.toLowerCase();
+
   //  conditional to not let any info to be added unless all 3 values are filled out
    if(name && course && grade){
     //  firebase reference to add students to the database
     const studentsRef = database.ref('students');
     studentsRef.push({
       name,
+      lowerName,
       course,
+      lowerCourse,
       grade
     })
     // resets the inputs after adding student

@@ -20,9 +20,22 @@ export default class StudentList extends Component {
 
   saveStudent() {
     const { name, course, grade } = this.state;
+
+    // lower case name and course for sorting purposes since firebase is case sensitive
+    const lowerName = name.toLowerCase();
+    const lowerCourse = course.toLowerCase();
+
     const studentsRef = database.ref('students');
-    studentsRef.child(this.props.id).update({name, course, grade});
-    this.setState({edit: false});
+    studentsRef.child(this.props.id).update({
+      name,
+      lowerName,
+      course,
+      lowerCourse,
+      grade
+    });
+    this.setState({
+      edit: false
+    });
   }
 
   handleChangeFor(e, inputField){
