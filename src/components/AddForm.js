@@ -68,7 +68,7 @@ class AddForm extends Component {
 
         <div className="btn-group">
           <button className="btn btn-success" onClick={() => this.handleAddButton()}>Add</button>
-          <button className="btn" onClick={() => this.handleCancelButton()}>Cancel</button>
+          <button className="btn btn-default" onClick={() => this.handleCancelButton()}>Cancel</button>
         </div>
 
      </div>

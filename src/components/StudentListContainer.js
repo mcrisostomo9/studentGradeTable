@@ -11,8 +11,8 @@ export default class StudentListContainer extends Component {
   }
 
   componentDidMount() {
-    const studentsRef = database.ref('students');
-    // const studentsRef = database.ref('students').orderByKey();
+    // const studentsRef = database.ref('students');
+    const studentsRef = database.ref('students').orderByChild('name');
     studentsRef.on('value', snap => {
       this.setState({
         students: snap.val()

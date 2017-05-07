@@ -37,8 +37,8 @@ export default class StudentList extends Component {
           <td>{course}</td>
           <td>{grade}</td>
           <td className="btn-group" role="group">
-            <button type="button" onClick={() => this.editStudent()} className="btn btn-primary btn-sm">Edit</button>
-            <button type="button" onClick={() => this.props.deleteStudentHandler()} className="btn btn-danger btn-sm">Delete</button>
+            <button type="button" onClick={() => this.editStudent()} className="btn btn-primary btn-md"><span className="glyphicon glyphicon-pencil"></span></button>
+            <button type="button" onClick={() => this.props.deleteStudentHandler()} className="btn btn-danger btn-md"><span className="glyphicon glyphicon-trash"></span></button>
           </td>
         </tr>
       )
@@ -49,8 +49,8 @@ export default class StudentList extends Component {
         <td><input className="form-control" type="text" value={course} onChange={(e) => this.handleChangeFor(e, 'course')}/></td>
         <td><input className="form-control" type="number" value={grade} onChange={(e) => this.handleChangeFor(e, 'grade')}/></td>
         <td className="btn-group" role="group">
-          <button type="button" onClick={() => this.saveStudent()} className="btn btn-success btn-sm">Save</button>
-          <button type="button" onClick={() => this.props.deleteStudentHandler()} className="btn btn-danger btn-sm">Delete</button>
+          <button type="button" onClick={() => this.saveStudent()} className="btn btn-success btn-md"><span className="glyphicon glyphicon-floppy-disk"></span></button>
+          <button type="button" onClick={() => this.props.deleteStudentHandler()} className="btn btn-danger btn-md"><span className="glyphicon glyphicon-trash"></span></button>
         </td>
       </tr>
     )
