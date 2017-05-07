@@ -13,7 +13,7 @@ class AddForm extends Component {
  }
 
  handleAddButton(){
-   let {name, course, grade} = this.state;
+   let { name, course, grade } = this.state;
   //  conditional to not let any info to be added unless all 3 values are filled out
    if(name && course && grade){
     //  firebase reference to add students to the database

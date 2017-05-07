@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import database from '../actions/database';
 import StudentList from './StudentList';
 
@@ -27,11 +27,10 @@ export default class StudentListContainer extends Component {
   }
 
   renderStudents() {
-    const {students} = this.state;
+    const { students } = this.state;
     if(!students){
       return <tr><td>Enter student</td></tr>
     }
-
     // Render students by mapping through dynamic keys created by Firebase
     return Object.keys(students).map( key => {
       // With access to dynamic keys from firebase, inserted key into firebase Students object into const id

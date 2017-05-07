@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import database from '../actions/database';
 
 export default class Header extends Component {

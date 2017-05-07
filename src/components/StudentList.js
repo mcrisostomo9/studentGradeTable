@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import database from '../actions/database';
 
 export default class StudentList extends Component {
@@ -9,27 +9,30 @@ export default class StudentList extends Component {
       name: this.props.name,
       course: this.props.course,
       grade: this.props.grade
-
     }
   }
 
   editStudent() {
-    this.setState({edit: true})
+    this.setState({
+      edit: true
+    })
   }
 
   saveStudent() {
-    const {name, course, grade} = this.state;
+    const { name, course, grade } = this.state;
     const studentsRef = database.ref('students');
     studentsRef.child(this.props.id).update({name, course, grade});
     this.setState({edit: false});
   }
 
   handleChangeFor(e, inputField){
-    this.setState({ [inputField]: e.target.value })
+    this.setState({
+       [inputField]: e.target.value
+     })
   }
 
   render() {
-    const {edit, name, course, grade} = this.state;
+    const { edit, name, course, grade } = this.state;
 
     // when edit is false, render table data
     if (!edit) {
