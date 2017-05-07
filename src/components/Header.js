@@ -12,13 +12,18 @@ export default class Header extends Component {
 
   // on mount, males call to firebase
   componentDidMount() {
-    const rootRef = database.ref();
-    const studentsRef = rootRef.child('students');
+    const studentsRef = database.ref('students');
     studentsRef.on('value', snap => {
         // get value of the firebase data
         const students = snap.val();
         const gradeArray = []
         // To iterate through object data received from firebase, goes through the keys of the object to map through
+        if(!students){
+          this.setState({
+            gradeAverage: null
+          })
+          return
+        }
         Object.keys(students).map(key => {
           const grade = parseInt(students[key].grade, 10);
           gradeArray.push(grade);

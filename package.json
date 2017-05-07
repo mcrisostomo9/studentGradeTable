@@ -2,6 +2,7 @@
   "name": "sgt",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mcrisostomo9.github.io/studentGradeTable",
   "dependencies": {
     "firebase": "^3.9.0",
     "react": "^15.5.4",
@@ -22,6 +23,5 @@
     "eject": "react-scripts eject",
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build"
-  },
-  "homepage": "https://mcrisostomo9.github.io/sgt"
+  }
 }

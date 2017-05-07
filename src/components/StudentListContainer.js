@@ -29,7 +29,7 @@ export default class StudentListContainer extends Component {
   renderStudents() {
     const {students} = this.state;
     if(!students){
-      return <div>Enter student</div>
+      return <tr><td>Enter student</td></tr>
     }
     return Object.keys(students).map( key => {
       const id = students[key];
