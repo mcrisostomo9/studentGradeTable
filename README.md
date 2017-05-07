@@ -1,3 +1,3 @@
-#Student Grade Table
+# Student Grade Table
 
 React and Firebase
