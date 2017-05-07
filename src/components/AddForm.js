@@ -16,7 +16,7 @@ class AddForm extends Component {
  handleAddButton(){
    let {name, course, grade} = this.state;
    if(name && course && grade){
-    const studentsRef = database.ref('/students');
+    const studentsRef = database.ref('students');
     studentsRef.push({
       name,
       course,

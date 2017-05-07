@@ -11,7 +11,8 @@ export default class StudentListContainer extends Component {
   }
 
   componentDidMount() {
-    const studentsRef = database.ref().child('students');
+    const studentsRef = database.ref('students');
+    // const studentsRef = database.ref('students').orderByKey();
     studentsRef.on('value', snap => {
       this.setState({
         students: snap.val()
@@ -20,7 +21,7 @@ export default class StudentListContainer extends Component {
   }
 
   deleteStudent(key){
-    const studentsRef = database.ref().child('students');
+    const studentsRef = database.ref('students');
     studentsRef.child(key).remove();
   }
 
