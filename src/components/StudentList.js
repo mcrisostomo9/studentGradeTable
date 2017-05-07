@@ -29,8 +29,10 @@ export default class StudentList extends Component {
   }
 
   render() {
-    const {name, course, grade} = this.state;
-    if (!this.state.edit) {
+    const {edit, name, course, grade} = this.state;
+
+    // when edit is false, render table data
+    if (!edit) {
       return (
         <tr>
           <td>{name}</td>
@@ -43,6 +45,8 @@ export default class StudentList extends Component {
         </tr>
       )
     }
+
+    // when edit is set to true, gives td input options to edit and save
     return (
       <tr>
         <td><input className="form-control" type="text" value={name} onChange={(e) => this.handleChangeFor(e, 'name')}/></td>

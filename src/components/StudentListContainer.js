@@ -31,8 +31,12 @@ export default class StudentListContainer extends Component {
     if(!students){
       return <tr><td>Enter student</td></tr>
     }
+
+    // Render students by mapping through dynamic keys created by Firebase
     return Object.keys(students).map( key => {
+      // With access to dynamic keys from firebase, inserted key into firebase Students object into const id
       const id = students[key];
+      // const id gives access to the object keys
       return <StudentList key={key} id={key} name={id.name} course={id.course} grade={id.grade} deleteStudentHandler={() => this.deleteStudent(key)}/>
     })
   }
