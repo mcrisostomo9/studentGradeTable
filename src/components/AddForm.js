@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import database from '../actions/database';
 
-class AddForm extends Component {
+export default class AddForm extends Component {
   constructor(){
    super();
 
@@ -13,10 +13,10 @@ class AddForm extends Component {
  }
 
  handleAddButton(){
-   let {name, course, grade} = this.state;
+   let { name, course, grade } = this.state;
   //  conditional to not let any info to be added unless all 3 values are filled out
    if(name && course && grade){
-    //  firebase reference to add students to the database
+    //  firebase reference to add students to the database by pushing the current state of the inputs
     const studentsRef = database.ref('students');
     studentsRef.push({
       name,
@@ -30,7 +30,7 @@ class AddForm extends Component {
        grade: ''
      })
    }else{
-     // TODO: make a need more info message
+     // TODO: make a more robust message
      console.log('need more');
    }
  }
@@ -77,5 +77,3 @@ class AddForm extends Component {
    )
  }
 }
-
-export default AddForm

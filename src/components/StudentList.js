@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import database from '../actions/database';
 
 export default class StudentList extends Component {
@@ -14,23 +14,37 @@ export default class StudentList extends Component {
   }
 
   editStudent() {
-    this.setState({edit: true})
+    this.setState({
+      edit: true
+    })
   }
 
   saveStudent() {
-    const {name, course, grade} = this.state;
+    const { name, course, grade } = this.state;
     const studentsRef = database.ref('students');
-    studentsRef.child(this.props.id).update({name, course, grade});
-    this.setState({edit: false});
+
+    // conditional to check if all inputs have been filled
+    if(name && course && grade){
+      studentsRef.child(this.props.id).update({
+        name,
+        course,
+        grade
+      });
+      this.setState({
+        edit: false
+      });
+    }
   }
 
+  // handle input changes for all three input fields
   handleChangeFor(e, inputField){
-    this.setState({ [inputField]: e.target.value })
+    this.setState({
+       [inputField]: e.target.value
+      })
   }
 
   render() {
-    const {edit, name, course, grade} = this.state;
-
+    const { edit, name, course, grade } = this.state;
     // when edit is false, render table data
     if (!edit) {
       return (
@@ -45,7 +59,6 @@ export default class StudentList extends Component {
         </tr>
       )
     }
-
     // when edit is set to true, gives td input options to edit and save
     return (
       <tr>
@@ -59,5 +72,4 @@ export default class StudentList extends Component {
       </tr>
     )
   }
-
 }

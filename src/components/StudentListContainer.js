@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import database from '../actions/database';
 import StudentList from './StudentList';
 
@@ -12,8 +12,6 @@ export default class StudentListContainer extends Component {
 
   componentDidMount() {
     const studentsRef = database.ref('students');
-    // TODO: attempt orderbychild
-    // const studentsRef = database.ref('students').orderByChild('name');
     studentsRef.on('value', snap => {
       this.setState({
         students: snap.val()
@@ -27,7 +25,7 @@ export default class StudentListContainer extends Component {
   }
 
   renderStudents() {
-    const {students} = this.state;
+    const { students } = this.state;
     if(!students){
       return <tr><td>Enter student</td></tr>
     }

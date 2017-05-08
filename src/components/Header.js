@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import database from '../actions/database';
 
 export default class Header extends Component {
@@ -10,21 +10,24 @@ export default class Header extends Component {
     }
   }
 
-  // on mount, males call to firebase
+  // on mount, makes call to firebase for the default data to be shown on first load
   componentDidMount() {
     const studentsRef = database.ref('students');
     studentsRef.on('value', snap => {
-        // get value of the firebase data
         const students = snap.val();
         const gradeArray = []
-        // To iterate through object data received from firebase, goes through the keys of the object to map through
+
+        // conditional to reset the grade average to nothing
         if(!students){
           this.setState({
             gradeAverage: null
           })
           return
         }
+
+        // To iterate through object data received from firebase, goes through the keys of the object to map through
         Object.keys(students).map(key => {
+          // parses every student grade to push into an array to take the average
           const grade = parseInt(students[key].grade, 10);
           gradeArray.push(grade);
           return gradeArray
