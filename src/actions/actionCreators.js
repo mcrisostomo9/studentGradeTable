@@ -45,8 +45,6 @@ function getGradeAverage(students){
     type: ActionTypes.GET_GRADE_AVERAGE,
     payload: ''
   }
-
-
 }
 
 export function deleteStudentFirebase(key){
@@ -64,4 +62,15 @@ export function addStudent(name, course, grade){
       grade
     })
   }
+}
+
+export function saveStudent(name, course, grade, id){
+  return dispatch => {
+    database.ref('students').child(id).update({
+      name,
+      course,
+      grade
+    })
+  }
+
 }
