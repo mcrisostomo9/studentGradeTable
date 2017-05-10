@@ -3,6 +3,7 @@ import database from './database';
 
 export function getStudent(){
   return dispatch => {
+    // retrieves data from firebase
     return database.ref('/students').on('value', snap => {
       const students = snap.val();
       dispatch(getStudentFulfilled(students));
@@ -18,6 +19,7 @@ function getStudentFulfilled(students){
   }
 }
 
+// function for calculating grade average, takes data from firebase
 function getGradeAverage(students){
   const gradeArray = [];
   const grades = students;
@@ -41,6 +43,7 @@ function getGradeAverage(students){
       payload: gradeAverage
     }
   }
+  // to set state to zero when there are no grades to take avg
   return{
     type: ActionTypes.GET_GRADE_AVERAGE,
     payload: ''

@@ -33,6 +33,7 @@ class AddForm extends Component {
    }
  }
 
+  // to render error message when all form inputs are not filled out
   renderError(){
     const { formError } = this.state;
     if(formError){
