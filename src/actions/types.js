@@ -1,0 +1,9 @@
+const actionTypes = {
+  ADD_STUDENT : "ADD_STUDENT",
+  DELETE_STUDENT : "DELETE_STUDENT",
+  EDIT_STUDENT : "EDIT_STUDENT",
+  GET_STUDENT: "GET_STUDENT",
+  GET_GRADE_AVERAGE: "GET_GRADE_AVERAGE"
+}
+
+export default actionTypes;

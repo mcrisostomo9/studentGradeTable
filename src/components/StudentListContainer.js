@@ -1,31 +1,20 @@
 import React, { Component } from 'react';
-import database from '../actions/database';
+import { connect } from 'react-redux';
+import { getStudent, deleteStudentFirebase } from '../actions/actionCreators';
 import StudentList from './StudentList';
 
-export default class StudentListContainer extends Component {
-  constructor(){
-    super();
-    this.state = {
-      students: {}
-    }
-  }
+class StudentListContainer extends Component {
 
   componentDidMount() {
-    const studentsRef = database.ref('students');
-    studentsRef.on('value', snap => {
-      this.setState({
-        students: snap.val()
-      })
-    });
+    this.props.handleGetStudent()
   }
 
   deleteStudent(key){
-    const studentsRef = database.ref('students');
-    studentsRef.child(key).remove();
+    this.props.handleDeleteStudent(key)
   }
 
   renderStudents() {
-    const { students } = this.state;
+    const { students } = this.props;
     if(!students){
       return <tr><td>Enter student</td></tr>
     }
@@ -58,3 +47,18 @@ export default class StudentListContainer extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    students: state.studentData.students
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleGetStudent: () => dispatch(getStudent()),
+    handleDeleteStudent: (key) => dispatch(deleteStudentFirebase(key))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentListContainer)
