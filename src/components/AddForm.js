@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import database from '../actions/database';
+import { connect } from 'react-redux';
+import { addStudent } from '../actions/actionCreators';
 
-export default class AddForm extends Component {
+class AddForm extends Component {
   constructor(){
    super();
 
@@ -16,13 +17,7 @@ export default class AddForm extends Component {
    let { name, course, grade } = this.state;
   //  conditional to not let any info to be added unless all 3 values are filled out
    if(name && course && grade){
-    //  firebase reference to add students to the database by pushing the current state of the inputs
-    const studentsRef = database.ref('students');
-    studentsRef.push({
-      name,
-      course,
-      grade
-    })
+    this.props.handleAddStudent(name, course, grade);
     // resets the inputs after adding student
      this.setState({
        name: '',
@@ -77,3 +72,11 @@ export default class AddForm extends Component {
    )
  }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleAddStudent: (name, course, grade) => dispatch(addStudent(name, course, grade)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddForm)

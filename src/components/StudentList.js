@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import database from '../actions/database';
+import { connect } from 'react-redux';
+import { saveStudent } from '../actions/actionCreators';
 
-export default class StudentList extends Component {
+class StudentList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,15 +22,10 @@ export default class StudentList extends Component {
 
   saveStudent() {
     const { name, course, grade } = this.state;
-    const studentsRef = database.ref('students');
-
     // conditional to check if all inputs have been filled
     if(name && course && grade){
-      studentsRef.child(this.props.id).update({
-        name,
-        course,
-        grade
-      });
+      const { id } = this.props;
+      this.props.handleSaveStudent(name, course, grade, id);
       this.setState({
         edit: false
       });
@@ -73,3 +69,11 @@ export default class StudentList extends Component {
     )
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleSaveStudent: (name, course, grade, id) => dispatch(saveStudent(name, course, grade, id))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(StudentList)
