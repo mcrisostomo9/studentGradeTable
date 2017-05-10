@@ -9,7 +9,8 @@ class AddForm extends Component {
    this.state = {
      name: '',
      course: '',
-     grade: ''
+     grade: '',
+     formError: false
    }
  }
 
@@ -22,23 +23,37 @@ class AddForm extends Component {
      this.setState({
        name: '',
        course: '',
-       grade: ''
+       grade: '',
+       formError: false
      })
    }else{
-     // TODO: make a more robust message
-     console.log('need more');
+     this.setState({
+       formError: true
+     })
    }
  }
+
+  renderError(){
+    const { formError } = this.state;
+    if(formError){
+      return <div className="alert alert-danger">Please fill out whole form</div>
+    }
+    else {
+      return
+    }
+  }
 
  handleCancelButton(){
    this.setState({
      name: '',
      course: '',
-     grade: ''
+     grade: '',
+     formError: false
    })
  }
 
  render(){
+   const styleBtn = {margin: '0px 3px'};
    return(
      <div className="form-group col-sm-3 col-sm-push-9 col-md-3 col-md-push-9  col-lg-3 col-lg-push-9">
        <h4>Add Student</h4>
@@ -63,10 +78,9 @@ class AddForm extends Component {
          <input type="number" value={this.state.grade} onChange={e => this.setState({ grade: e.target.value})} className="form-control" placeholder="Student Grade"/>
        </div>
 
-        <div className="btn-group">
-          <button className="btn btn-success" onClick={() => this.handleAddButton()}>Add</button>
-          <button className="btn btn-default" onClick={() => this.handleCancelButton()}>Cancel</button>
-        </div>
+          {this.renderError()}
+          <button style={styleBtn} className="btn btn-success" onClick={() => this.handleAddButton()}>Add</button>
+          <button style={styleBtn} className="btn btn-default" onClick={() => this.handleCancelButton()}>Cancel</button>
 
      </div>
    )
