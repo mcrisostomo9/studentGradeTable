@@ -40,6 +40,7 @@ class StudentList extends Component {
   }
 
   render() {
+    const styleBtn = {margin: '0px 3px'};
     const { edit, name, course, grade } = this.state;
     // when edit is false, render table data
     if (!edit) {
@@ -48,9 +49,9 @@ class StudentList extends Component {
           <td>{name}</td>
           <td>{course}</td>
           <td>{grade}</td>
-          <td className="btn-group" role="group">
-            <button type="button" onClick={() => this.editStudent()} className="btn btn-primary btn-md"><span className="glyphicon glyphicon-pencil"></span></button>
-            <button type="button" onClick={() => this.props.deleteStudentHandler()} className="btn btn-danger btn-md"><span className="glyphicon glyphicon-trash"></span></button>
+          <td>
+            <button style={styleBtn} type="button" onClick={() => this.editStudent()} className="btn btn-primary btn-md"><span className="glyphicon glyphicon-pencil"></span></button>
+            <button style={styleBtn} type="button" onClick={() => this.props.deleteStudentHandler()} className="btn btn-danger btn-md"><span className="glyphicon glyphicon-trash"></span></button>
           </td>
         </tr>
       )
@@ -61,9 +62,9 @@ class StudentList extends Component {
         <td><input className="form-control" type="text" value={name} onChange={(e) => this.handleChangeFor(e, 'name')}/></td>
         <td><input className="form-control" type="text" value={course} onChange={(e) => this.handleChangeFor(e, 'course')}/></td>
         <td><input className="form-control" type="number" value={grade} onChange={(e) => this.handleChangeFor(e, 'grade')}/></td>
-        <td className="btn-group" role="group">
-          <button type="button" onClick={() => this.saveStudent()} className="btn btn-success btn-md"><span className="glyphicon glyphicon-floppy-disk"></span></button>
-          <button type="button" onClick={() => this.props.deleteStudentHandler()} className="btn btn-danger btn-md"><span className="glyphicon glyphicon-trash"></span></button>
+        <td>
+          <button style={styleBtn} type="button" onClick={() => this.saveStudent()} className="btn btn-success btn-md"><span className="glyphicon glyphicon-floppy-disk"></span></button>
+          <button style={styleBtn} type="button" onClick={() => this.props.deleteStudentHandler()} className="btn btn-danger btn-md"><span className="glyphicon glyphicon-trash"></span></button>
         </td>
       </tr>
     )
