@@ -6,11 +6,12 @@ import StudentList from './StudentList';
 class StudentListContainer extends Component {
 
   componentDidMount() {
-    this.props.handleGetStudent()
+    this.props.handleGetStudent();
   }
 
   deleteStudent(key){
-    this.props.handleDeleteStudent(key)
+    // this.props.handleDeleteStudent(key)
+    console.log(this.props.search);
   }
 
   renderStudents() {
@@ -50,7 +51,8 @@ class StudentListContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    students: state.studentData.students
+    students: state.studentData.students,
+    search: state.studentData.search
   }
 }
 

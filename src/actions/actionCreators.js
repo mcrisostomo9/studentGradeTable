@@ -75,5 +75,13 @@ export function saveStudent(name, course, grade, id){
       grade
     })
   }
+}
 
+export function searchStudent(name){
+  return dispatch => {
+    return{
+      type: ActionTypes.SEARCH_STUDENT,
+      payload: name
+    }
+  }
 }

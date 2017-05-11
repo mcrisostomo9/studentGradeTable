@@ -1,9 +1,9 @@
 import ActionTypes from '../actions/types';
 
-export default function studentData(state={}, action){
-  switch (action.type) {
-    case ActionTypes.GET_STUDENT:
 
+export function studentData(state={}, action){
+  switch (action.type){
+    case ActionTypes.GET_STUDENT:
       return{
         ...state,
         students: action.payload,
@@ -12,6 +12,11 @@ export default function studentData(state={}, action){
       return{
         ...state,
         gradeAverage: action.payload
+      }
+    case ActionTypes.SEARCH_STUDENT:
+      return{
+        ...state,
+        search: action.payload
       }
     default:
       return state

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addStudent } from '../actions/actionCreators';
+import { addStudent, searchStudent } from '../actions/actionCreators';
 
 class AddForm extends Component {
   constructor(){
@@ -10,7 +10,8 @@ class AddForm extends Component {
      name: '',
      course: '',
      grade: '',
-     formError: false
+     formError: false,
+     search: ''
    }
  }
 
@@ -53,6 +54,13 @@ class AddForm extends Component {
    })
  }
 
+  handleSearchButton(){
+    this.props.handleSearchStudent(this.state.search);
+    this.setState({
+      search: ''
+    })
+  }
+
  render(){
    const styleBtn = {margin: '0px 3px'};
    return(
@@ -83,6 +91,14 @@ class AddForm extends Component {
           <button style={styleBtn} className="btn btn-success" onClick={() => this.handleAddButton()}>Add</button>
           <button style={styleBtn} className="btn btn-default" onClick={() => this.handleCancelButton()}>Cancel</button>
 
+          <div className="input-group form-group">
+            <span className="input-group-addon">
+              <span className="glyphicon glyphicon-search"></span>
+            </span>
+            <input type="text" value={this.state.search} onChange={e => this.setState({ search: e.target.value})} className="form-control" placeholder="search"/>
+          </div>
+          <button className="btn btn-primary" onClick={() => this.handleSearchButton()}>Search</button>
+
      </div>
    )
  }
@@ -91,6 +107,7 @@ class AddForm extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleAddStudent: (name, course, grade) => dispatch(addStudent(name, course, grade)),
+    handleSearchStudent: (name) => dispatch(searchStudent(name))
   }
 }
 
