@@ -4,5 +4,6 @@ This application was developed to showcase a Create, Read, Update, & Delete (CRU
 
  Application developed using the following technologies:
 * React
+* Redux
 * Firebase
 * Bootstrap
