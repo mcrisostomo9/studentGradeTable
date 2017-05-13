@@ -79,7 +79,6 @@ class AddForm extends Component {
          <input type="number" value={this.state.grade} onChange={e => this.setState({ grade: e.target.value})} className="form-control" placeholder="Student Grade"/>
        </div>
 
-          // to render error message
           {this.renderError()}
           <button style={styleBtn} className="btn btn-success" onClick={() => this.handleAddButton()}>Add</button>
           <button style={styleBtn} className="btn btn-default" onClick={() => this.handleCancelButton()}>Cancel</button>
