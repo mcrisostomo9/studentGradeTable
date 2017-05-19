@@ -8,8 +8,11 @@ class App extends Component {
     return (
       <div className="container">
         <Header/>
-        <AddForm/>
-        <StudentListContainer/>
+        <div className="row">
+          <AddForm/>
+          <StudentListContainer/>
+        </div>
+
       </div>
     );
   }

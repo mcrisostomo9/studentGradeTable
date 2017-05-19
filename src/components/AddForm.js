@@ -56,35 +56,35 @@ class AddForm extends Component {
  render(){
    const styleBtn = {margin: '0px 3px'};
    return(
-     <div className="row">
-       <div className="col s3 push-s9 ">
-         <h4>Add Student</h4>
-         <div className="input-group form-group">
-           <span className="input-group-addon">
-             <span className="glyphicon glyphicon-user"></span>
-           </span>
-           <input type="text" value={this.state.name} onChange={e => this.setState({ name: e.target.value})} className="form-control" placeholder="Student Name"/>
-         </div>
-
-         <div className="input-group form-group">
-           <span className="input-group-addon">
-             <span className="glyphicon glyphicon-list-alt"></span>
-           </span>
-           <input type="text" value={this.state.course} onChange={e => this.setState({ course: e.target.value})} className="form-control" placeholder="Student Course"/>
-         </div>
-
-         <div className="input-group form-group">
-           <span className="input-group-addon">
-             <span className="glyphicon glyphicon-education"></span>
-           </span>
-           <input type="number" value={this.state.grade} onChange={e => this.setState({ grade: e.target.value})} className="form-control" placeholder="Student Grade"/>
-         </div>
-
-            {this.renderError()}
-            <button style={styleBtn} className="btn btn-success" onClick={() => this.handleAddButton()}>Add</button>
-            <button style={styleBtn} className="btn btn-default" onClick={() => this.handleCancelButton()}>Cancel</button>
-
+     <div className="col s12 m3 push-m9 ">
+       <h4>Add Student</h4>
+       <div className="input-group form-group">
+         <span className="input-group-addon">
+           <span className="glyphicon glyphicon-user"></span>
+         </span>
+         <input type="text" value={this.state.name} onChange={e => this.setState({ name: e.target.value})} className="form-control" placeholder="Student Name"/>
        </div>
+
+       <div className="input-group form-group">
+         <span className="input-group-addon">
+           <span className="glyphicon glyphicon-list-alt"></span>
+         </span>
+         <input type="text" value={this.state.course} onChange={e => this.setState({ course: e.target.value})} className="form-control" placeholder="Student Course"/>
+       </div>
+
+       <div className="input-group form-group">
+         <span className="input-group-addon">
+           <span className="glyphicon glyphicon-education"></span>
+         </span>
+         <input type="number" value={this.state.grade} onChange={e => this.setState({ grade: e.target.value})} className="form-control" placeholder="Student Grade"/>
+       </div>
+
+          {this.renderError()}
+          <button style={styleBtn} className="btn btn-success" onClick={() => this.handleAddButton()}>Add</button>
+          {/* <button className="btn waves-effect waves-light">Add<i className="material-icons"></i></button> */}
+
+          <button style={styleBtn} className="btn btn-default" onClick={() => this.handleCancelButton()}>Cancel</button>
+
      </div>
    )
  }
