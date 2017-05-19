@@ -85,7 +85,6 @@ class AddForm extends Component {
             <button style={styleBtn} className="btn btn-default" onClick={() => this.handleCancelButton()}>Cancel</button>
 
        </div>
-
      </div>
    )
  }

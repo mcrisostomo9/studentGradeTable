@@ -29,7 +29,7 @@ class StudentListContainer extends Component {
   }
   render() {
     return (
-      <div className="col s9 pull-s3 m9 pull-m33">
+      <div className="col s9 pull-s3 m9 pull-m3">
         <table className="table">
           <thead>
             <tr>
